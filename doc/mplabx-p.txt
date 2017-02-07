@@ -1,0 +1,801 @@
+********************************************************************
+USER GUIDE FOR INTEGRATING CC5X/CC8E AND MPLAB X, STEP BY STEP
+
+
+                *** PRELIMINARY ***
+
+
+CC5X and CC8E can be used a tool in MPLAB X to build single-module
+projects. Multi-module projects is also possible together with MPASM
+and MPLINK. CC5X/CC8E or MPLINK generates the required HEX and COF
+files for debugging and production Build.
+
+
+CONTENTS:
+
+* INITIAL SETUP: PREPARING THE INTEGRATION
+* NORMAL USAGE: DEFINING A MPLAB X PROJECT
+
+* SINGLE-MODULE MODE: THE COMPILER GENERATES HEX AND COF FILES
+* SINGLE-MODULE DEBUGGING AND BREAKPOINTS
+
+* MAKING MPLAB X UNDERSTAND THE COMPILER DEFINITIONS
+* DISPLAYING VARIABLE CONTENTS DURING DEBUGGING
+* SPECIAL NOTES
+
+* MULTI-MODULE MODE: MPLINK GENERATES HEX AND COF FILES
+* MULTI-MODULE DEBUGGING AND BREAKPOINTS
+
+* GENERIC PLUG-IN PROPERTIES DESCRIPTION
+* UPGRADING TO A NEW VERSION OF MPLAB X
+
+
+
+
+********************************************************************
+INITIAL SETUP: PREPARING THE INTEGRATION
+
+* install the compiler if not already installed. CC5X version 3.5D
+  (or later) and CC8E version 1.4D (or later) is recommended.
+
+  Note that old compiler versions (older than version 3.5D/1.4D)
+  will NOT support debugging (no COF file) in single-module mode.
+  However, these version will support a normal build (HEX file) and
+  point-and-click on error messages (option -FM).
+
+* install MPLAX X IDE if not already installed. The latest version
+  is expected to work (also if not listed here).
+
+    MPLAB X version 3.50         ok
+    MPLAB X version 3.35 - 3.45  ok
+    MPLAB X version 3.30         NOT recommended (makefile problem)
+    MPLAB X version 2.35 - 3.26  ok
+
+* RECOMMENDED STEP: create a new folder where MPLAB X will store the
+  compiler integration XML files. This base folder will contain the
+  compiler information used by MPLAB X. The new folder should be
+  OUTSIDE "C:\Program Files (x86)" and any operating system folders.
+  This is required to avoid problems related to folder privileges.
+  Example "C:\projects\myBaseCompilerFolder".
+  Then copy the compiler EXE file from the installed folder
+  ("C:\Program Files (x86)\bknd\cc5x") to the new folder. Copy ONLY
+  the compiler executable. Do NOT MOVE the compiler executable.
+
+* start MPLAB X IDE
+
+* select menu item Tools->Options, chose card "Embedded" and "Build
+  Tools" in pop-up window ("Options") and button "Add Custom
+  Compiler". Then a new window ("Add Custom Compiler") pops up.
+
+  Item 1: Preferably use "Browse" and define "base compiler folder".
+  This must be set to the folder containing the compiler exe file.
+  This should normally be the newly created folder during the above
+  recommended step, example:
+
+      C:\projects\myBaseCompilerFolder
+
+
+  Item 2: Enter the main compiler version as a decimal string for
+  second item "Version", for example:
+
+      3.5           (for CC5X)
+      1.4           (for CC8E)
+
+
+  Item 3: enter the compiler name a string for third item "Name",
+  for example:
+
+      CC5X          (for CC5X)
+      CC8E          (for CC8E)
+
+
+  Item 4: Preferably use "Browse" and locate the "Compiler binary
+  file". It have to reside in the Base folder selected in Item 1. It
+  may look like:
+
+      C:\projects\myBaseCompilerFolder\CC5X.EXE            (for CC5X)
+      C:\projects\myBaseCompilerFolder\CC8E.EXE            (for CC8E)
+
+
+  Item 5: Preferably use "Browse" and locate the "Assembler binary
+  file". It can reside outside the Base folder. It may look like:
+
+      C:\Program Files (x86)\Microchip\MPLABX\3.35\mpasmx\mpasmx.exe
+
+
+  Item 6: Preferably use "Browse" and locate the "Linker binary
+  file". It can reside outside the Base folder. It may look like:
+
+      C:\Program Files (x86)\Microchip\MPLABX\3.35\mpasmx\mplink.exe
+
+
+  Item 7: The use of this item is currently not understood and can
+  be left undefined.
+
+
+  Item 8: The "Source to object extension pairs" should be:
+
+      c,o;asm,o;
+
+
+  Item 9: Set "Image File Format" to "Hex" for "Production Build".
+  Set "Image File Format" to "Cof" for "Debug Build".
+
+
+  Item 10: For "Supported Device Families", select "8-bit MCUs (PIC10/12/16)"
+  for CC5X, and similar "PIC18" for CC8E.
+
+
+  Then click on the OK button, and also the OK button in window "Options".
+
+  CC5X (or CC8E) is now a selectable tool in MPLAB X.
+
+  The newly created XML files can be found and inspected in the new
+  folder "C:\projects\myBaseCompilerFolder".
+
+
+
+********************************************************************
+NORMAL USAGE: DEFINING A MPLAB X PROJECT
+
+* start MPLAB X IDE. Click on menu item "File->New Project..." or use the
+  equivalent button or command.
+
+  A "New Project" window pops up. Follow the sequential steps. Use for
+  example:
+
+  1. Choose Project: "Microchip Embedded" + "Standalone Project". Click Next.
+  2. Select device: "Mid-range 8-bit MCUs" or "Advanced 8 bit MCUs" and
+     select the actual device. Click Next.
+  3. Select Header: None  (Alternably your own selection). Click Next.
+  4. Select Tool: Simulator  (Alternably your own selection). Click Next.
+  5. Select Plugin Board: None  (Alternably your own selection).
+  6. Select Compiler: Select Custom compiler CC5X or CC8E. Click Next.
+  7. Select Project Name and Folder: Enter a Project name and decide
+     Project Location. A folder with name "MyProject.X" will be
+     created at the "Project Location". Click Finish.
+
+  NOTE: It is possible to locate the MPLAB X project folder in the
+  folder used for the project source files. Alternatively the source
+  files can be stored in the MPLAB X project folder or anywhere
+  else. The MPLAB X project folder will contain the Build
+  files (HEX, COF, ASM, VAR, O, etc.).
+
+
+
+********************************************************************
+SINGLE-MODULE MODE: THE COMPILER GENERATES HEX AND COF FILES
+
+* Right-Click on the "Source Files" under the project name in the Projects
+  window. Select an existing source file or create a new one.
+
+
+* Right-Click on the project name in the Projects window. Select the
+  last item "Properties" in the large pop-up menu.
+
+  1. Select item "Loading" (using "Conf:[default]"): Click on "Use this .hex
+     file instead of .." and enter the name of the Production Build hex file.
+     This is typically the name of the main source file (using .hex instead
+     of .c), or any other name defined by the compiler options.
+
+     It is required to leave the following item in "Loading" UNCHECKED:
+     "Load symbols when programming or building for production (slows process)".
+     The reason is that it is not compatible with loading a hex file in
+     the main project folder. If symbols have to be loaded then the setup
+     for production loading must be different, and the COF file in
+     "dist\default\production\..." must be loaded. Note a debug build will
+     load the required symbols for debugging independent of the production build.
+
+
+  2. Select item "Custom (Global Options") and enter a string for
+
+       Image Files To Load for DEBUG Build:   dist\MainName.cof
+
+
+     Replace MainName with the name of your main C source file.
+     Alternably use any other name defined by the compiler options.
+
+     NOTE: It is required to locate COF files somewhere in the "dist" folder.
+
+     NOTE: Folder "dist" have to be created manually.
+
+
+  3. Select item "Custom Compiler" and enter the following string for
+
+       Debug Options Before Source File:   -Odist
+
+
+  4. Enter remaining (common) options in
+
+       Additional options:   -FM -CF -cif -a -p16F1947
+
+
+     Option "-p16F1947" must be replaced by the actual device name used.
+
+     Old compiler versions (older than version 3.5D/1.4D) will NOT support
+     debugging (no COF file). These version will support a normal build (HEX
+     file) and point-and-click on error messages. However, old versions does
+     not understand the "-CF" option which must be removed. It may also
+     be required to remove the "-cif" option.
+
+     Old compiler versions (older than version 3.4C/1.3C) also need to know
+     the search path for the compiler installation directory in order to
+     find device header files, math and interrupt header files. The -I option
+     can be added to the "Additional options" and should look like:
+
+       -I"C:\Program Files (x86)\bknd\CC5X"      (for CC5X version 3.4C or older)
+       -I"C:\Program Files (x86)\bknd\CC8E"      (for CC8E version 1.3C or older)
+
+
+  5. Select item "Custom Linker" and enable "Skip linker call during build".
+
+
+  Select OK and the project is ready to compile for production and debug.
+
+
+* Perform a Production Build by selecting menu item "Run->Build Main Project"
+
+  Look for messages "BUILD SUCCESSFUL" and "Loading completed".
+  Syntax errors must be corrected. Point-and-click on error and
+  warning messages is possible when using option -FM as stated
+  above.
+
+  Note that the make job is generic and may print information in the
+  output window that is not applicable.
+
+
+* Perform Debug Build by selecting menu item "Debug->Debug Main Project"
+
+  Look for messages "BUILD SUCCESSFUL" and "Loading completed".
+
+  The simulator/debugger may start immediate after the Debug Build.
+  Ensure setting of proper breakpoints.
+
+
+
+********************************************************************
+SINGLE-MODULE DEBUGGING AND BREAKPOINTS
+
+When using single-module compiler mode the source code is often split
+into many C files which are included in the main C file.
+
+PROBLEM: MPLAB X may not recognise BREAKPOINTS in an included C file
+unless this file is listed in the "Source Files" of the project.
+
+SOLUTION: It is strongly recommended to list ALL C files belonging
+to the project as "Source Files".
+
+IMPORTANT: In order to prevent MPLAB X from compiling all files
+listed as "Source Files" separately it is required to right-click on
+the project name and select "Properties". Then click on Category
+"File Inclusion/Exclusion". Then move all C files that are included
+in the main C file to the "Excluded Files:" window. Click on the OK
+button when finished.
+
+
+
+********************************************************************
+MAKING MPLAB X UNDERSTAND THE COMPILER DEFINITIONS
+
+MPLAB X has an advanced editor that recognises defined symbols and
+try to provide useful help. CC5X and CC8E has many specific
+definitions that MPLAB X does not understand. It is recommended to
+copy the following definition into a project source file. The MPLAB
+X editor will then recognize the specific compiler definitions.
+Note that the definitions are ONLY for the MPLAB X EDITOR and will
+not influence on debugging. The definitions will enable displaying
+simplified variable values. However, the variable watch window may
+provide more correct and comprehensive variable types.
+
+
+// FOR CC5X:
+
+#if !defined __CC5X__
+ // These definitions are for the MPLAB X GUI only (not compiled)
+ typedef signed char int8;
+ typedef unsigned char uns8;
+ typedef signed int int16;
+ typedef unsigned int uns16;
+ typedef signed short long int24;
+ typedef unsigned short long uns24;
+ typedef signed long int32;
+ typedef unsigned long uns32;
+ typedef unsigned char bit;
+ typedef float float16;
+ typedef float float24;
+ typedef float float32;
+ typedef signed char fixed_8;
+ typedef signed char fixedU_8;
+ typedef signed int fixed_16;
+ typedef signed int fixed8_8;
+ typedef unsigned int fixedU_16;
+ typedef signed int fixedU8_8;
+ typedef signed short long fixed_24;
+ typedef signed short long fixed8_16;
+ typedef signed short long fixed16_8;
+ typedef unsigned short long fixedU_24;
+ typedef unsigned short long fixedU8_16;
+ typedef unsigned short long fixedU16_8;
+ typedef signed long fixed_32;
+ typedef signed long fixed8_24;
+ typedef signed long fixed16_16;
+ typedef signed long fixed24_8;
+ typedef unsigned long fixedU_32;
+ typedef unsigned long fixedU8_24;
+ typedef unsigned long fixedU16_16;
+ typedef unsigned long fixedU24_8;
+
+ typedef void interrupt;
+ #define sharedM
+ #define shadowDef
+ #define size1
+ #define size2
+ #define page0
+ #define page1
+ #define page2
+ #define page3
+ #define page4
+ #define page5
+ #define page6
+ #define page7
+ #define page8
+ #define page9
+ #define page10
+ #define page11
+ #define page12
+ #define page13
+ #define page14
+ #define page15
+ #define bank0
+ #define bank1
+ #define bank2
+ #define bank3
+ #define bank4
+ #define bank5
+ #define bank6
+ #define bank7
+ #define bank8
+ #define bank9
+ #define bank10
+ #define bank11
+ #define bank12
+ #define bank13
+ #define bank14
+ #define bank15
+ #define bank16
+ #define bank17
+ #define bank18
+ #define bank19
+ #define bank20
+ #define bank21
+ #define bank22
+ #define bank23
+ #define bank24
+ #define bank25
+ #define bank26
+ #define bank27
+ #define bank28
+ #define bank29
+ #define bank30
+ #define bank31
+ // optionally define bank32 .. bank63
+
+ void btsc(char);
+ void btss(char);
+ void clrwdt(void);
+ void clearRAM(void);
+ char decsz(char);
+ char incsz(char);
+ void nop(void);
+ void nop2(void);
+ void retint(void);
+ char rl(char);
+ char rr(char);
+ void sleep(void);
+ void skip(char);
+ char swap(char);
+
+ char addWFC(char);
+ char subWFB(char);
+ char lsl(char);
+ char lsr(char);
+ char asr(char);
+ void softReset(void);
+
+ char *FSR0, *FSR1;
+ char INDF0, INDF1;
+ char FSR0L, FSR0H, FSR1L, FSR1H, FSR;
+ char W, WREG;
+ char PCL, PCLATH, STATUS, INTCON;
+ bit Carry, DC, Zero_, PD, TO;
+
+ typedef void Task;
+ void waitState( char);
+ void changeState( char);
+ void startTask( Task (*task)());
+ void restartTask( void);
+ void clearTask( Task (*task)());
+ void taskSlicer( Task (*task)());
+ char getState( Task (*task)());
+ char getStateAddress( Task (*task)());
+ void suspendTask( Task (*task)());
+ void resumeTask( Task (*task)());
+ void waitUntilResume( char);
+
+ // MPLAB X will read chip specific symbols from this file:
+ #include "C:\Program Files (x86)\bknd\cc5x\16F1938.h"
+#endif
+
+The above #include "device definition file" can optionally be moved
+outside the above conditional part and compiled the normal way. It
+is then required to remove any -p<device> compiler option and also
+#pragma chip <device> statement.
+
+
+
+// FOR CC8E:
+
+#if !defined __CC8E__
+ // These definitions are for the MPLAB X GUI only (not compiled)
+ typedef signed char int8;
+ typedef unsigned char uns8;
+ typedef signed int int16;
+ typedef unsigned int uns16;
+ typedef signed short long int24;
+ typedef unsigned short long uns24;
+ typedef signed long int32;
+ typedef unsigned long uns32;
+ typedef unsigned char bit;
+ typedef float float16;
+ typedef float float24;
+ typedef float float32;
+ typedef signed char fixed_8;
+ typedef signed char fixedU_8;
+ typedef signed int fixed_16;
+ typedef signed int fixed8_8;
+ typedef unsigned int fixedU_16;
+ typedef signed int fixedU8_8;
+ typedef signed short long fixed_24;
+ typedef signed short long fixed8_16;
+ typedef signed short long fixed16_8;
+ typedef unsigned short long fixedU_24;
+ typedef unsigned short long fixedU8_16;
+ typedef unsigned short long fixedU16_8;
+ typedef signed long fixed_32;
+ typedef signed long fixed8_24;
+ typedef signed long fixed16_16;
+ typedef signed long fixed24_8;
+ typedef unsigned long fixedU_32;
+ typedef unsigned long fixedU8_24;
+ typedef unsigned long fixedU16_16;
+ typedef unsigned long fixedU24_8;
+
+ typedef void interrupt;
+ #define sharedM
+ #define shadowDef
+ #define size1
+ #define size2
+ #define bank0
+ #define bank1
+ #define bank2
+ #define bank3
+ #define bank4
+ #define bank5
+ #define bank6
+ #define bank7
+ #define bank8
+ #define bank9
+ #define bank10
+ #define bank11
+ #define bank12
+ #define bank13
+ #define bank14
+ #define bank15
+
+ void btsc(char);
+ void btss(char);
+ void clrwdt(void);
+ void clearRAM(void);
+ char decsz(char);
+ char incsz(char);
+ void nop(void);
+ void nop2(void);
+ void retint(void);
+ char rl(char);
+ char rr(char);
+ void sleep(void);
+ void skip(char);
+ char swap(char);
+
+ void skipL(char);
+ void skipM(char);
+ char addWFC(char);
+ char subWFB(char);
+ char subFWB(char);
+ char rlnc(char);
+ char rrnc(char);
+ char decsnz(char);
+ char incsnz(char);
+ char negate(char);
+ char decadj(char);
+ void multiply(char);
+ void skipIfEQ(char);
+ void skipIfLT(char);
+ void skipIfGT(char);
+ void skipIfZero(char);
+ void pushStack(void);
+ void popStack(void);
+ void softReset(void);
+ void tableRead(void);
+ void tableReadInc(void);
+ void tableReadDec(void);
+ void tableReadPreInc(void);
+ void tableWrite(void);
+ void tableWriteInc(void);
+ void tableWritePreInc(void);
+
+ char TOSU,TOSH,TOSL;
+ char STKPTR;
+ char PCLATU,PCLATH,PCL;
+ char TBLPTRU,TBLPTRH,TBLPTRL,TBLPTR,TABLAT;
+ char PRODH,PRODL;
+ char INTCON,INTCON2,INTCON3;
+ char INDF0,POSTINC0,POSTDEC0,PREINC0,PLUSW0,FSR0H,FSR0L,FSR0;
+ char WREG;
+ char INDF1,POSTINC1,POSTDEC1,PREINC1,PLUSW1,FSR1H,FSR1L,FSR1;
+ char BSR,BSRL;
+ char INDF2,POSTINC2,POSTDEC2,PREINC2,PLUSW2,FSR2H,FSR2L,FSR2;
+ char STATUS;
+ bit Carry,DC,Zero_,Overflow,Negative;
+
+ typedef void Task;
+ void waitState( char);
+ void changeState( char);
+ void startTask( Task (*task)());
+ void restartTask( void);
+ void clearTask( Task (*task)());
+ void taskSlicer( Task (*task)());
+ char getState( Task (*task)());
+ char getStateAddress( Task (*task)());
+ void suspendTask( Task (*task)());
+ void resumeTask( Task (*task)());
+ void waitUntilResume( char);
+
+ // MPLAB X will read chip specific symbols from this file:
+ #include "C:\Program Files (x86)\bknd\cc8e\18F4680.h"
+#endif
+
+The above #include "device definition file" can optionally be moved
+outside the above conditional part and compiled the normal way. It
+is then required to remove any -p<device> compiler option and also
+#pragma chip <device> statement.
+
+
+
+********************************************************************
+DISPLAYING VARIABLE CONTENTS DURING DEBUGGING
+
+MPLAB X will be able to display surprisingly many compiler data types.
+Some data types will only be displayed correctly in the Watch window.
+
+  Variable type
+  bit :             displayed as a bitfield struct (item "value").
+  8 bit signed/unsigned integer :  OK
+  16 bit signed/unsigned integer : OK
+  24 bit signed/unsigned integer : OK
+  32 bit signed/unsigned integer : OK
+
+  24 bit (Microchip) float :  NOT possible to display correctly
+
+  32 bit (Microchip) float :  OK
+
+  8 - 32 bit fixed point : Initially displayed as an integer, but the correct
+         format can be displayed in a Watch window by right-clicking
+         on the variable name and selecting "Display Value Columns
+         As->Fractional Integer" and chosing the right decimal
+         point using the slide bar.
+
+  8 bit pointers : limited support, only the pointer itself can be displayed.
+  16 bit pointers : OK
+
+
+
+********************************************************************
+SPECIAL NOTES
+
+CC5X:
+  * The MPLAB X editor does not recognize the pageX identifiers.
+    - workaround 1: use the definitions stated in section "MAKING MPLAB X
+                    UNDERSTAND THE COMPILER DEFINITIONS"
+    - workaround 2: use pageX modifiers on prototype function definitions only
+    - workaround 3: use #pragma codepage or #pragma location
+
+CC8E:
+  * It is required to disable the Extended instruction set.
+    Otherwise program execution and Debug Build may fail.
+
+    The solution is to use #pragma config to disable the Extended
+    instruction set. First locate the device configuration bits in
+    the data sheet. Example:
+
+      #pragma config[4] &= ~0x40  // PIC18F45K50
+
+
+
+********************************************************************
+MULTI-MODULE MODE: MPLINK GENERATES HEX AND COF FILES
+
+It is possible to let the compiler or assembler generate object modules
+that are linked by MPLINK to build the final HEX and COF files. Note
+that this often requires more space for local variables because the
+compiler is not able to find the best overlapping layout. The code
+size may also increase compared to single-module projects.
+
+* Right-Click on the project name in the Projects window. Select the
+  last item "Properties" in the large pop-up menu.
+
+  1. Select item "Loading" (using "Conf:[default]"): Click on "Use this .hex
+     file instead of .." and enter the name of the Production Build hex file.
+     The name is fully selectable. The same name must be entered for the
+     custom linke later in this description.
+
+
+  2. Select item "Custom (Global Options") and enter a string for "Image Files
+     To Load for DEBUG Build". This is typically "dist\<name>.cof". Replace
+     <name> with the name that you choose. It must be the same folder and
+     name selected for step 4 below for "Debug Options", example:
+
+       Image Files To Load for PRODUCTION Build :
+       Files to Parse for Debug Symbols for PRODUCTION Build :
+       Image Files To Load for DEBUG Build :                    dist\MainName.cof
+       Files to Parse for Debug Symbols for DEBUG Build :
+
+     NOTE: It is required to locate COF files somewhere in the "dist" folder.
+
+     NOTE: Folder "dist" have to be created manually.
+
+
+  3. Select item "Custom Compiler" and enter options in "Additional options:
+
+       -FM -a -cif -p16F877 +reloc.inc
+
+
+     Option "-p16F877" must be replaced by the actual device name used.
+
+     Note that the file "reloc.inc" should be copied from the
+     compiler folder to the project folder and changed to suit the
+     setup of your computer.
+
+     Old compiler versions (older than version 3.5D/1.4D) will support
+     debugging because MPASM/MPLINK generates the debug information.
+     Some old versions will not understand the "-cif" option which then
+     must be removed.
+
+     Old compiler versions (older than version 3.4C/1.3C) also need to know
+     the search path for the compiler installation directory in order to
+     find device header files, math and interrupt header files. The -I option
+     can be added to the "Additional options" and should look like:
+
+       -I"C:\Program Files (x86)\bknd\CC5X"       (for CC5X version 3.4C or older)
+       -I"C:\Program Files (x86)\bknd\CC8E"       (for CC8E version 1.3C or older)
+
+
+  4. Select item "Custom Linker" and make sure that "Skip linker call
+     during build" is NOT selected.
+
+     For "Production Options" enter :
+       Alt. 1:  /o MainName.hex
+       Alt. 2:  /o dist\default\production\MainName.cof
+
+     For "Debug Options" enter:
+       Alt. 1:  /o dist\MainName.cof
+       Alt. 2:  /o dist\default\debug\MainName.cof
+
+     Note that folder "dist" and subfolders have to be created manually.
+
+     MainName must be replaced by the actual name used in the project.
+
+
+  5. For "Custom Linker": enter device and module options in "Additional options:
+
+     Example for 3 modules using PIC16F877:
+
+       16F877.lkr module1.o module2.o modul3.o /p 16F877
+
+
+  Select OK and the project is ready to compile for production and debug.
+
+
+* Right-Click on the "Source Files" under the project name in the Projects window.
+  Select an existing source file or create a new one.
+
+
+* Perform a Production Build by selecting menu item "Run->Build Main Project"
+
+  Look for messages "BUILD SUCCESSFUL" and "Loading completed". Correct syntax
+  errors (Point-and-click on error and warning messages is possible when using
+  option -FM as stated above).
+
+  Note that the make job is generic and may print information in output
+  window the that are not applicable for the current Build.
+
+* Perform Debug Build by selecting menu item "Debug->Debug Main Project"
+
+  Look for messages "BUILD SUCCESSFUL" and "Loading completed".
+
+
+
+********************************************************************
+MULTI-MODULE DEBUGGING AND BREAKPOINTS
+
+For multi-module mode the compiler will generate ASM files. It is
+NOT possible to set breakpoints in the C files. Instead, the ASM
+files must be used for debugging, including the ASM files generated
+by the compiler.
+
+PROBLEM: MPLAB X may not recognise BREAKPOINTS in a generated ASM
+file unless this file is listed in the "Source Files" of the project.
+
+SOLUTION: It is strongly recommended to list ALL ASM files belonging
+to the project as "Source Files".
+
+IMPORTANT: In order to prevent MPLAB X from compiling all files
+listed as "Source Files" separately it is required to right-click on
+the project name and select "Properties". Then click on Category
+"File Inclusion/Exclusion". Then move all C files that are included
+in other C files to the "Excluded Files:" window. Click on the OK
+button when finished.
+
+
+
+********************************************************************
+GENERIC PLUG-IN PROPERTIES DESCRIPTION
+
+The following information is useful when experimenting with more
+advanced project setups.
+
+Custom (Global Options)
+  Image Files To Load for PRODUCTION Build :               HEX or empty
+  Files to Parse for Debug Symbols for PRODUCTION Build :  COF or empty
+  Image Files To Load for DEBUG Build :                    COF
+  Files to Parse for Debug Symbols for DEBUG Build :       COF or empty
+
+NOTE: The COF file MUST be located somewhere in the "dist" folder.
+The HEX file can reside in the project folder.
+
+Example most simple setup:
+
+  Image Files To Load for PRODUCTION Build :
+  Files to Parse for Debug Symbols for PRODUCTION Build :
+  Image Files To Load for DEBUG Build :                    dist\MainName.cof
+  Files to Parse for Debug Symbols for DEBUG Build :
+
+Example alternative setup:
+
+  Image Files To Load for PRODUCTION Build :               dist\default\production\MainName.hex
+  Files to Parse for Debug Symbols for PRODUCTION Build :
+  Image Files To Load for DEBUG Build :                    dist\default\debug\MainName.cof
+  Files to Parse for Debug Symbols for DEBUG Build :
+
+
+
+********************************************************************
+UPGRADING TO A NEW VERSION OF MPLAB X
+
+After upgrading to a new MPLAB X version it may happen that the custom compiler
+tool seems to be gone. The following step should then be tried:
+
+* select menu item Tools->Options, chose card "Embedded" in pop-up
+  window ("Options")
+
+  Select card "Build Tools"
+
+  Select right toolchain : CC5X/CC8E ..
+
+  Then button "Add..."
+
+  Type the path or use "Browse" to find the base folder created for the
+  compiler integration XML files.
+
+  In some cases it is required to terminate and restart MPLAB X
+  before starting to work on the project again.
