@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Embedded">
+        <folder name="LanguageToolchain">
+            <file name="cc5x.languageToolchain.xml" url="cc5x.languageToolchain.xml">
+                <attr name="position" intvalue="7100"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Templates">
+        <folder name="Microchip Embedded">
+            <folder name="CC8E Compiler">
+                <file name="main.c" url="templates/main-c.template">
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="position" intvalue="300"/>
+                    <attr name="template" boolvalue="true"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/main-c.html"/>
+                    <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
+                    <attr name="templateCategory" stringvalue="c-types"/>
+                </file>
+                <file name="example.h" url="templates/example-h.template">
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="position" intvalue="300"/>
+                    <attr name="template" boolvalue="true"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/example-h.html"/>
+                    <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
+                    <attr name="templateCategory" stringvalue="c-types"/>
+                </file>
+                <file name="cc8e.h" url="templates/cc8e-h.template">
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="position" intvalue="300"/>
+                    <attr name="template" boolvalue="true"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/cc8e-h.html"/>
+                    <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
+                    <attr name="templateCategory" stringvalue="c-types"/>
+                </file>
+                <file name="leanslice.h" url="templates/leanslice-h.template">
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="position" intvalue="300"/>
+                    <attr name="template" boolvalue="true"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/leanslice-h.html"/>
+                    <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
+                    <attr name="templateCategory" stringvalue="c-types"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

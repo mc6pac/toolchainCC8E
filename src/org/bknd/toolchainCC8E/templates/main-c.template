@@ -1,0 +1,17 @@
+/*
+   File:   %<%NAME%>%.%<%EXTENSION%>%
+   Author: %<%USER%>%
+
+   Created on %<%DATE%>%, %<%TIME%>%
+ */
+
+#include <cc8e.h>
+
+void main(void)
+{
+    //Infinite loop
+    for(;;)
+    {
+
+    }
+}

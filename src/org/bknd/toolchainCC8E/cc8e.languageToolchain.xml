@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<mp:languageToolchain xmlns:mp="http://crownking/mplab"
+                      xmlns:opt="http://crownking/opt"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://crownking/mplab mplab/languageToolchain.xsd"
+                      mp:id="CC8E"
+                      mp:name="CC8E Toolchain"
+                      opt:fromversion="1.4F"
+                      mp:hostplatforms="windows,none"
+                      mp:class="org.bknd.toolchainCC8E.CC8EToolchain">
+    
+    <mp:versionProvider mp:class="org.bknd.toolchainCC8E.CC8EVersionProvider"/>
+    <opt:versionFactory opt:class="org.bknd.toolchainCC8E.CC8EVersionFactory"/>
+
+    <mp:configurationObject mp:id="cc5x-mode" mp:idref="CC8E" opt:src="cc5x.mode.optionLanguage.xml"/>
+    <mp:configurationObject mp:id="cc5x-config" mp:idref="CC8E" opt:src="cc5x.config.optionLanguage.xml"/>
+    
+    <mp:customizerNode mp:idref="cc5x-mode" mp:name="CC8E Toolchain">
+        <mp:customizerNode mp:idref="cc5x-config" mp:name="CC8E Compiler"/>
+    </mp:customizerNode>
+
+    <mp:makefileWriter mp:checkos="true" mp:adddependencies="false" mp:runtimepropertiesclass="org.bknd.toolchainCC8E.CC8EMakeRuntimeProperties">
+        <mp:inputToOutputExtensionMap mp:src="c" mp:dst="o"/>
+        <mp:inputToOutputExtensionMap mp:src="C" mp:dst="o"/>
+
+        <mp:build mp:buildtype="standalone" mp:outputextension="hex" mp:debuggableextension="cof">
+            <mp:buildStep mp:if="${SINGLE_MODE}" mp:idref="compile_single_mode"/>
+            <mp:buildStep mp:if="${SINGLE_MODE}" mp:idref="link_not_used"/>
+
+            <mp:buildStep mp:ifnot="${SINGLE_MODE}" mp:idref="compile_only"/>
+            <mp:buildStep mp:ifnot="${SINGLE_MODE}" mp:idref="link_external"/>
+        </mp:build>
+        
+        <mp:makeRule mp:id="compile_single_mode" mp:prerequisites=".*\.(c|C)$" mp:runtimepropertiesclass="org.bknd.toolchainCC8E.CC8ECompilerProperties">
+            <mp:textEmitter mp:text="${MKDIR} ${CURRENT_QUOTED_IF_SPACED_OBJECT_DIR_UNIX_SLASHES} ${NEWLINE}"/>
+            <mp:textEmitter mp:text="${MKDIR} ${FINAL_TARGET_DIR} ${NEWLINE}"/>
+            <mp:textEmitter mp:text="${MP_CC} -dc -FM "/>
+            <mp:textEmitter mp:text="-p${PROCESSOR_NAME} "/>
+            <mp:optionEmitter mp:idref="cc5x-config" mp:separator=" "/>
+            <mp:textEmitter mp:text=" ${CURRENT_QUOTED_IF_SPACED_SOURCE_FILE} "/>
+            <mp:textEmitter mp:text=" -O${FINAL_TARGET_DIR}"/>
+            <mp:textEmitter mp:text=" -o${FINAL_IMAGE_NAME}"/>
+            <mp:textEmitter mp:text=" -a${CURRENT_QUOTED_IF_SPACED_OBJECT_FILE_MINUS_EXTENSION}.asm"/>
+            <mp:textEmitter mp:text=" -CF${FINAL_IMAGE_NAME_MINUS_EXTENSION}.cof"/>
+            <mp:textEmitter mp:text="${NEWLINE}"/>
+        </mp:makeRule>
+        
+        <mp:makeRule mp:id="link_not_used" mp:prerequisites="${CURRENT_OBJECT_FILES}" mp:target="${FINAL_IMAGE_NAME}"  mp:runtimepropertiesclass="org.bknd.toolchainCC8E.CC8ECompilerProperties">
+        </mp:makeRule>
+
+        <mp:makeRule mp:id="compile_only" mp:prerequisites=".*\.(c|C)$" mp:runtimepropertiesclass="org.bknd.toolchainCC8E.CC8ECompilerProperties">
+            <mp:textEmitter mp:text="${MKDIR} ${CURRENT_QUOTED_IF_SPACED_OBJECT_DIR_UNIX_SLASHES} ${NEWLINE}"/>
+            <mp:textEmitter mp:text="${MKDIR} ${FINAL_TARGET_DIR} ${NEWLINE}"/>
+            <mp:textEmitter mp:text="${MP_CC} -dc -FM "/>
+            <mp:textEmitter mp:text="-p${PROCESSOR_NAME} "/>
+            <mp:optionEmitter mp:idref="cc5x-config" mp:separator=" "/>
+            <mp:textEmitter mp:text=" ${CURRENT_QUOTED_IF_SPACED_SOURCE_FILE} "/>
+            <mp:optionEmitter mp:idref="cc5x-mode" opt:groupidref="singlemodegrp" mp:separator=" "/>
+            <!--mp:optionEmitter mp:idref="cc5x-mode" opt:groupidref="mpasmxlocationgrp" mp:prefix=" -x"/-->
+            <mp:textEmitter mp:text=" -O${CURRENT_OBJECT_DIR}"/>
+            <mp:textEmitter mp:text="${NEWLINE}"/>
+        </mp:makeRule>
+
+        <mp:makeRule mp:id="link_external" mp:prerequisites="${CURRENT_OBJECT_FILES}" mp:target="${FINAL_IMAGE_NAME}"  mp:runtimepropertiesclass="org.bknd.toolchainCC8E.CC8ECompilerProperties">
+            <mp:textEmitter mp:text="${MP_LINK}"/>
+            <mp:textEmitter mp:text=" /i"/>
+            <mp:textEmitter mp:text=" /p ${PROCESSOR_NAME}"/>
+            <mp:textEmitter mp:text=" ${CURRENT_OBJECT_FILES}"/>
+            <mp:textEmitter mp:text=" /o ${FINAL_IMAGE_NAME_MINUS_EXTENSION}.cof"/>
+            <mp:textEmitter mp:text="${NEWLINE}"/>
+        </mp:makeRule>
+    </mp:makefileWriter>
+        
+    <mp:logicalFolder mp:id="SourceFiles"/>
+    <mp:logicalFolder mp:id="HeaderFiles"/>
+    <mp:logicalFolder mp:id="ObjectFiles"/>
+    <mp:logicalFolder mp:id="LibraryFiles"/>
+    <mp:logicalFolder mp:id="LinkerScript"/>
+
+    <mp:defaultLocation mp:hostplatform="windows" mp:dir="C:/*/bknd/CC8E/"/>
+    <mp:defaultLocation mp:hostplatform="windows" mp:dir="C:/*/bknd/*/CC8E/"/>
+    
+    <mp:cCompiler mp:file="CC8E" mp:name="CC8E Compiler">
+        <mp:versionProvider mp:class="org.bknd.toolchainCC8E.CC8EVersionProvider"/>
+        <mp:builtinProvider mp:class="org.bknd.toolchainCC8E.CC8EBuiltinProvider"/>
+        <mp:systemIncludeProvider mp:class="org.bknd.toolchainCC8E.CC8ESystemIncludeProvider"/>
+        <mp:systemDefineProvider mp:class="org.bknd.toolchainCC8E.CC8ESystemDefineProvider"/>
+        <mp:userIncludeProvider mp:class="org.bknd.toolchainCC8E.CC8EUserIncludeProvider"/>
+        <mp:userIncludeModifier mp:class="org.bknd.toolchainCC8E.CC8EUserIncludeModifier"/>
+        <mp:userDefineProvider mp:class="org.bknd.toolchainCC8E.CC8EUserDefineProvider"/>
+        <mp:userDefineModifier mp:class="org.bknd.toolchainCC8E.CC8EUserDefineModifier"/>
+    </mp:cCompiler>
+
+    <mp:deviceSupport>
+        <mp:family mp:family="18x">
+            <mp:device mp:name="PIC18F4550"/>
+        </mp:family>
+    </mp:deviceSupport>
+</mp:languageToolchain>

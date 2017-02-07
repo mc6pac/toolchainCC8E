@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<opt:optionLanguage xmlns:opt="http://crownking/opt" 
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                    xsi:schemaLocation="http://crownking/opt opt/optionLanguage.xsd" 
+                    opt:id="cc8e-config" 
+                    opt:name="CC8E Compiler options">
+
+    <opt:optionCategory opt:id="general" opt:name="General options">
+        <opt:stringListOption opt:id="definemacro" opt:name="Define macro. Equivalent to #define name xxx." opt:emissionprefix="-D" opt:emissionseparator=" -D" opt:expr="[A-Za-z_][A-Za-z_0-9]*(=.+)?"/>
+
+        <opt:booleanOption opt:id="allowcdataoutsideprogramspace" opt:name="Allow cdata outside program space (warning only)." opt:trueemission="-cd"/>
+        <opt:booleanOption opt:id="useoldformatonconfig" opt:name="Use old format on config and idlocs in generated assembly file." opt:trueemission="-cfc"/>
+        <opt:booleanOption opt:id="disablesortingofaddresses" opt:name="Disable sorting of addresses in generated HEX file." opt:trueemission="-chu"/>
+
+        <opt:booleanOption opt:id="searchincludedfileindirectory" opt:name="Search included file in directory containing current file(s)." opt:trueemission="-cif" opt:booldefault="true"/>
+        <opt:booleanOption opt:id="donotsearchcurrentdirectory" opt:name="Do not search current directory for include files." opt:trueemission="-cxc"/>
+        <opt:stringListOption opt:id="includefilesdirectory" opt:name="Include files directory/folder" opt:emissionprefix="-I" opt:emissionseparator=" -I" opt:isdirectory="true" opt:isbrowsable="true"/>
+
+        <opt:booleanOption opt:id="use32bitevaluation" opt:name="Use 32 bit evaluation of constant expressions." opt:trueemission="-cu"/>
+
+        <opt:booleanOption opt:id="removeextrabytenames" opt:name="Remove extra byte names (nnn_e) from COD file." opt:trueemission="-Ce"/>
+
+        <opt:booleanOption opt:id="singlelineerrormessages" opt:name="Single line error messages (no source lines are printed)." opt:trueemission="-e"/>
+        <opt:booleanOption opt:id="donotprinterrordetails" opt:name="Do not print error details." opt:trueemission="-ed"/>
+        <opt:booleanOption opt:id="donotprintwarningdetails" opt:name="Do not print warning details." opt:trueemission="-ew"/>
+        <opt:booleanOption opt:id="listerrorandwarningdetails" opt:name="List error and warning details at the end." opt:trueemission="-eL"/>
+        <opt:stringOption opt:id="stopafternerrors" opt:name="Stop after 'N' errors (default is 4)." opt:emissionPrefix="-E"/>
+        
+        <opt:enumOption opt:id="hexfileformat" opt:name="Hex file format." opt:textdefault="INHX8M" opt:emissionprefix="-f" opt:emitswhendefault="false">
+            <opt:selection opt:text="INHX8M" opt:name="INHX8M"/>
+            <opt:selection opt:text="INHX8S" opt:name="INHX8S"/>
+            <opt:selection opt:text="INHX16" opt:name="INHX16"/>
+            <opt:selection opt:text="INHX32" opt:name="INHX32"/>            
+        </opt:enumOption>
+        
+        <opt:enumOption opt:id="skipformat" opt:name="Selected skip() format." opt:textdefault="" opt:emissionprefix="-G" opt:emitswhendefault="false">
+            <opt:selection opt:text="" opt:name="Default"/>
+            <opt:selection opt:text="W" opt:name="Dynamic selected, warning on long format"/>
+            <opt:selection opt:text="D" opt:name="Dynamic selected"/>
+            <opt:selection opt:text="S" opt:name="Short format, error if boundary is crossed"/>
+            <opt:selection opt:text="L" opt:name="Long format"/>            
+        </opt:enumOption>
+    </opt:optionCategory>
+
+    <opt:optionCategory opt:id="optimizations" opt:name="Optimizations">
+        <opt:enumOption opt:id="setcodegeneratorlevel" opt:name="Set code generator level." opt:textdefault="1" opt:emissionprefix="-cl" opt:emitswhendefault="false">
+            <opt:selection opt:text="0" opt:name="Old"/>
+            <opt:selection opt:text="1" opt:name="Improved"/>
+        </opt:enumOption>
+
+        <opt:booleanOption opt:id="nooptimizing" opt:name="no optimizing." opt:trueemission="-u"/>
+
+        <opt:booleanOption opt:id="dontupdatepageselectionbits" opt:name="Do not update page selection bits." opt:trueemission="-j"/>
+        <opt:booleanOption opt:id="nobankselectionbits" opt:name="Do not update bank selection bits." opt:trueemission="-b"/>
+        <opt:booleanOption opt:id="nonoptbankselectionbits" opt:name="Non-optimized updating of the bank selection bits." opt:trueemission="-bu"/>
+        <opt:booleanOption opt:id="dontreplacecallbygoto" opt:name="Do not replace call by goto." opt:trueemission="-g"/>
+        
+        <opt:booleanOption opt:id="defaultconstpointersize1" opt:name="Default 'const' pointer size is 1 byte (8 bits)." opt:trueemission="-mc1"/>
+        <opt:booleanOption opt:id="defaultconstpointersize2" opt:name="Default 'const' pointer size is 2 bytes (16 bits)." opt:trueemission="-mc2"/>
+        <opt:booleanOption opt:id="defaultrampointersize1" opt:name="Default RAM pointer size is 1 byte." opt:trueemission="-mr1"/>
+        <opt:booleanOption opt:id="defaultrampointersize2" opt:name="Default RAM pointer size is 2 bytes." opt:trueemission="-mr2"/>
+        <opt:booleanOption opt:id="defaultpointersize1" opt:name="Default pointer size is 1 byte (all pointer types)." opt:trueemission="-mm1"/>
+        <opt:booleanOption opt:id="defaultpointersize2" opt:name="Default pointer size is 2 bytes (all pointer types)." opt:trueemission="-mm2"/>
+
+    </opt:optionCategory>
+
+    <opt:optionCategory opt:id="asmoutputfile" opt:name="Assembly output file">
+        <opt:complexOption opt:id="assemblyfileoptions" opt:name="Assembly file options." opt:emissionprefix="-A">
+            <opt:booleanOption opt:id="symbolicarguments" opt:name="Symbolic arguments are replaced by numbers." opt:trueemission="s"/>
+            <opt:booleanOption opt:id="noCsourcecode" opt:name="No C source code is printed." opt:trueemission="c"/>
+            <opt:booleanOption opt:id="hexadecimalnumbersonly" opt:name="Hexadecimal numbers only." opt:trueemission="H"/>
+            <opt:booleanOption opt:id="decimalnumbersonly" opt:name="Decimal numbers only." opt:trueemission="D"/>
+            <opt:booleanOption opt:id="dotdecimalconstants" opt:name="Use '.' in front of decimal constants." opt:trueemission="P"/>
+            <opt:booleanOption opt:id="noobjectformatdirective" opt:name="No object format directive is printed." opt:trueemission="f"/>
+            <opt:booleanOption opt:id="notabulatorsspacesonly" opt:name="No tabulators, normal spaces only." opt:trueemission="t"/>
+            <opt:booleanOption opt:id="noextrainfoinassemblyfile" opt:name="No extra info at the end of the assembly file." opt:trueemission="u"/>
+            <opt:booleanOption opt:id="singlesourcelineonly" opt:name="Single source line only." opt:trueemission="m"/>
+            <opt:booleanOption opt:id="nosourceindentation" opt:name="No source indentation, straight left margin." opt:trueemission="i"/>
+            <opt:booleanOption opt:id="sourceafterinstructions" opt:name="Put source after instructions to achieve a compact assembly file." opt:trueemission="J"/>
+            <opt:booleanOption opt:id="detailedmacroexpansion" opt:name="Detailed macro expansion." opt:trueemission="R"/>
+            <opt:booleanOption opt:id="dontaddrambankinfo" opt:name="Do not add rambank info to variables in the assembly file." opt:trueemission="b"/>
+            <opt:booleanOption opt:id="dontaddinstructionstoregister" opt:name="Do not add ',1' to instructions when result is written back to the register." opt:trueemission="e"/>
+            <opt:booleanOption opt:id="dontreplaceoptionwithreg" opt:name="Do not replace OPTION with OPTION_REG." opt:trueemission="o"/>
+            <opt:booleanOption opt:id="dontconverthexadecimalnumbers" opt:name="Do not convert all hexadecimal numbers (11h -> 0x11)." opt:trueemission="k"/>
+            <opt:booleanOption opt:id="dontuseprocessordirective" opt:name="Do not use PROCESSOR instead of the list directive." opt:trueemission="g"/>
+            <opt:stringOption opt:id="labelmnemonicargumentspacing" opt:name="Label, mnemonic and argument spacing. Default is 8+6+10."/>
+        </opt:complexOption>
+    </opt:optionCategory>
+
+    <opt:optionCategory opt:id="compileroutput" opt:name="Compiler generated files">
+        <opt:complexOption opt:id="outputtosrccproptions">
+            <opt:booleanOption opt:id="outputtosrccpr" opt:name="Write output from preprocessor to file." opt:trueemission="-B">
+                <opt:trueModifiers>
+                    <opt:optionSuppressor opt:idref="partialpreprocessing" opt:bool="false"/>
+                    <opt:optionSuppressor opt:idref="noincludefiles" opt:bool="false"/>
+                    <opt:optionSuppressor opt:idref="modifysymbols" opt:bool="false"/>
+                    <opt:optionSuppressor opt:idref="modifystrings" opt:bool="false"/>
+                </opt:trueModifiers>
+                <opt:falseModifiers>
+                    <opt:optionSuppressor opt:idref="partialpreprocessing" opt:bool="true"/>
+                    <opt:optionSuppressor opt:idref="noincludefiles" opt:bool="true"/>
+                    <opt:optionSuppressor opt:idref="modifysymbols" opt:bool="true"/>
+                    <opt:optionSuppressor opt:idref="modifystrings" opt:bool="true"/>
+                </opt:falseModifiers>
+            </opt:booleanOption>
+            <opt:booleanOption opt:id="partialpreprocessing" opt:name="Partial preprocessing." opt:trueemission="p"/>
+            <opt:booleanOption opt:id="noincludefiles" opt:name="No include files." opt:trueemission="i"/>
+            <opt:booleanOption opt:id="modifysymbols" opt:name="Modify symbols." opt:trueemission="m"/>
+            <opt:booleanOption opt:id="modifystrings" opt:name="Modify strings." opt:trueemission="s"/>
+        </opt:complexOption>
+       
+        <opt:booleanOption opt:id="produceerrorfile" opt:name="Produce Error file." opt:trueemission="-F"/>
+    </opt:optionCategory>
+
+    <opt:optionCategory opt:id="compilerwarnings" opt:name="Compiler warnings">
+        <opt:booleanOption opt:id="warning_b" opt:name="Warning when function is called from another code page." opt:trueemission="-wB"/>
+        <opt:booleanOption opt:id="warning_c" opt:name="Warning on upward compatibility issues." opt:trueemission="-wC"/>
+        <opt:booleanOption opt:id="warning_e" opt:name="No warning when fixed point constants are rounded." opt:trueemission="-we"/>
+        <opt:booleanOption opt:id="warning_f" opt:name="No warning for read-modify-write sequences on the same PORT." opt:trueemission="-wf"/>
+        <opt:booleanOption opt:id="warning_i" opt:name="No warning on multiple inline math integer operations." opt:trueemission="-wi"/>
+        <opt:booleanOption opt:id="warning_l" opt:name="(12 bit core only) Print warning on all GOTO links to functions residing on hidden half of a." opt:trueemission="-wL"/>
+        <opt:booleanOption opt:id="warning_m" opt:name="No warning on single call to math integer function." opt:trueemission="-wm"/>
+        <opt:booleanOption opt:id="warning_o" opt:name="Narning on operator library calls." opt:trueemission="-wO"/>
+        <opt:booleanOption opt:id="warning_p" opt:name="Warning when code page bits are not correct." opt:trueemission="-wP"/>
+        <opt:booleanOption opt:id="warning_r" opt:name="No warning on recursive calls." opt:trueemission="-wr"/>
+        <opt:booleanOption opt:id="warning_s" opt:name="Warning (no error) when constant expression loses significant bits." opt:trueemission="-wS"/>
+        <opt:booleanOption opt:id="warning_u" opt:name="Warning on uncalled functions." opt:trueemission="-wU"/>
+    </opt:optionCategory>
+
+    <opt:submatchPattern opt:idref="definemacro" opt:expr="-D(.+)"/>
+    <opt:enablePattern opt:idref="allowcdataoutsideprogramspace" opt:expr="-cd"/>
+    <opt:enablePattern opt:idref="useoldformatonconfig" opt:expr="-cfc"/>
+    <opt:enablePattern opt:idref="disablesortingofaddresses" opt:expr="-chu"/>
+    <opt:enablePattern opt:idref="searchincludedfileindirectory" opt:expr="-cif"/>
+    <opt:enablePattern opt:idref="donotsearchcurrentdirectory" opt:expr="-cxc"/>
+    <opt:submatchPattern opt:idref="includefilesdirectory" opt:expr="-I(.+)"/>
+    <opt:enablePattern opt:idref="use32bitevaluation" opt:expr="-cu"/>
+    <opt:enablePattern opt:idref="removeextrabytenames" opt:expr="-Ce"/>
+    <opt:enablePattern opt:idref="singlelineerrormessages" opt:expr="-e"/>
+    <opt:enablePattern opt:idref="donotprinterrordetails" opt:expr="-ed"/>
+    <opt:enablePattern opt:idref="donotprintwarningdetails" opt:expr="-ew"/>
+    <opt:enablePattern opt:idref="listerrorandwarningdetails" opt:expr="-eL"/>
+    <opt:submatchPattern opt:idref="stopafternerrors" opt:expr="-E(\d)"/>
+    <opt:submatchPattern opt:idref="hexfileformat" opt:expr="-f(INHX8M|INHX8S|INHX16|INHX32)"/>
+    <opt:submatchPattern opt:idref="skipformat" opt:expr="-G([WSDL])"/>
+
+    <opt:enablePattern opt:idref="nooptimizing" opt:expr="-u"/>
+    <opt:submatchPattern opt:idref="setcodegeneratorlevel" opt:expr="-cl(\d)"/>
+    <opt:enablePattern opt:idref="dontupdatepageselectionbits" opt:expr="-j"/>
+    <opt:enablePattern opt:idref="nobankselectionbits" opt:expr="-b"/>
+    <opt:enablePattern opt:idref="nonoptbankselectionbits" opt:expr="-bu"/>
+    <opt:enablePattern opt:idref="dontreplacecallbygoto" opt:expr="-g"/>
+
+    <opt:enablePattern opt:idref="defaultconstpointersize1" opt:expr="-mc1"/>
+    <opt:enablePattern opt:idref="defaultconstpointersize2" opt:expr="-mc2"/>
+    <opt:enablePattern opt:idref="defaultrampointersize1" opt:expr="-mr1"/>
+    <opt:enablePattern opt:idref="defaultrampointersize2" opt:expr="-mr2"/>
+    <opt:enablePattern opt:idref="defaultpointersize1" opt:expr="-mm1"/>
+    <opt:enablePattern opt:idref="defaultpointersize2" opt:expr="-mm2"/>
+        
+    <opt:submatchPattern opt:idref="assemblyfileoptions" opt:expr="-A([scHDpftumiJRbeokg]+)">
+        <opt:enablePattern opt:idref="symbolicarguments" opt:expr=".*s.*"/>   
+        <opt:enablePattern opt:idref="noCsourcecode" opt:expr=".*c.*"/>   
+        <opt:enablePattern opt:idref="hexadecimalnumbersonly" opt:expr=".*H.*"/>   
+        <opt:enablePattern opt:idref="decimalnumbersonly" opt:expr=".*D.*"/>   
+        <opt:enablePattern opt:idref="dotdecimalconstants" opt:expr=".*P.*"/>   
+        <opt:enablePattern opt:idref="noobjectformatdirective" opt:expr=".*f.*"/>   
+        <opt:enablePattern opt:idref="notabulatorsspacesonly" opt:expr=".*t.*"/>   
+        <opt:enablePattern opt:idref="noextrainfoinassemblyfile" opt:expr=".*u.*"/>   
+        <opt:enablePattern opt:idref="singlesourcelineonly" opt:expr=".*m.*"/>   
+        <opt:enablePattern opt:idref="nosourceindentation" opt:expr=".*i.*"/>   
+        <opt:enablePattern opt:idref="sourceafterinstructions" opt:expr=".*J.*"/>   
+        <opt:enablePattern opt:idref="detailedmacroexpansion" opt:expr=".*R.*"/>   
+        <opt:enablePattern opt:idref="dontaddrambankinfo" opt:expr=".*b.*"/>   
+        <opt:enablePattern opt:idref="dontaddinstructionstoregister" opt:expr=".*e.*"/>   
+        <opt:enablePattern opt:idref="dontreplaceoptionwithreg" opt:expr=".*o.*"/>   
+        <opt:enablePattern opt:idref="dontconverthexadecimalnumbers" opt:expr=".*k.*"/>   
+        <opt:enablePattern opt:idref="dontuseprocessordirective" opt:expr=".*g.*"/>   
+        <!--opt:submatchPattern opt:idref="labelmnemonicargumentspacing" opt:expr=""/-->
+    </opt:submatchPattern>
+    
+    <opt:submatchPattern opt:idref="outputtosrccpr" opt:expr="-B([pims]+)">
+        <opt:enablePattern opt:idref="partialpreprocessing" opt:expr=".*p.*"/>
+        <opt:enablePattern opt:idref="noincludefiles" opt:expr=".*i.*"/>
+        <opt:enablePattern opt:idref="modifysymbols" opt:expr=".*m"/>
+        <opt:enablePattern opt:idref="modifystrings" opt:expr=".*s.*"/>
+    </opt:submatchPattern>
+    <opt:enablePattern opt:idref="produceerrorfile" opt:expr="-F"/>
+
+    <opt:enablePattern opt:id="warning_b" opt:expr="-wB"/>
+    <opt:enablePattern opt:id="warning_c" opt:expr="-wC"/>
+    <opt:enablePattern opt:id="warning_e" opt:expr="-we"/>
+    <opt:enablePattern opt:id="warning_f" opt:expr="-wf"/>
+    <opt:enablePattern opt:id="warning_i" opt:expr="-wi"/>
+    <opt:enablePattern opt:id="warning_l" opt:expr="-wL"/>
+    <opt:enablePattern opt:id="warning_m" opt:expr="-wm"/>
+    <opt:enablePattern opt:id="warning_o" opt:expr="-wO"/>
+    <opt:enablePattern opt:id="warning_p" opt:expr="-wP"/>
+    <opt:enablePattern opt:id="warning_r" opt:expr="-wr"/>
+    <opt:enablePattern opt:id="warning_s" opt:expr="-wS"/>
+    <opt:enablePattern opt:id="warning_u" opt:expr="-wU"/>
+</opt:optionLanguage>

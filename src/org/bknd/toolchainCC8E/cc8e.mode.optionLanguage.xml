@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<opt:optionLanguage xmlns:opt="http://crownking/opt" 
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                    xsi:schemaLocation="http://crownking/opt opt/optionLanguage.xsd" 
+                    opt:id="cc8e-mode" 
+                    opt:name="CC8E Compiler mode">
+    <opt:optionCategory opt:id="compilersetup" opt:name="Compiler mode">
+        <!--opt:booleanOption opt:id="singlemode" opt:groupid="singlemodegrp" opt:name="Single module mode." opt:falseemission="-r2 -X/o -X/q" opt:booldefault="true"-->
+        <opt:booleanOption opt:id="singlemode" opt:groupid="singlemodegrp" opt:name="Single module mode." opt:falseemission="+reloc.inc" opt:booldefault="true">
+            <opt:trueModifiers>
+                <!--opt:optionSuppressor opt:idref="mpasmxlocation" opt:bool="true"/-->
+                <!--opt:optionGrayer opt:idref="mpasmxlocation" opt:bool="true"/-->
+                <opt:optionSuppressor opt:idref="mplinklocation" opt:bool="true"/>
+                <opt:optionGrayer opt:idref="mplinklocation" opt:bool="true"/>
+            </opt:trueModifiers>
+            <opt:falseModifiers>
+                <!--opt:optionSuppressor opt:idref="mpasmxlocation" opt:bool="false"/-->
+                <!--opt:optionGrayer opt:idref="mpasmxlocation" opt:bool="false"/-->
+                <opt:optionSuppressor opt:idref="mplinklocation" opt:bool="false"/>
+                <opt:optionGrayer opt:idref="mplinklocation" opt:bool="false"/>
+            </opt:falseModifiers>
+        </opt:booleanOption>
+        <!--opt:stringOption opt:id="mpasmxlocation" opt:groupid="mpasmxlocationgrp" opt:name="Location of MPASMX." opt:isfile="true" opt:isbrowsable="true" opt:textdefault="C:\Program Files (x86)\Microchip\MPLABX\v3.40\mpasmx\mpasmx.exe"/-->
+        <opt:stringOption opt:id="mplinklocation" opt:groupid="mplinklocationgrp" opt:name="Location of MPLink." opt:isfile="true" opt:isbrowsable="true" opt:textdefault="C:\Program Files (x86)\Microchip\MPLABX\v3.40\mpasmx\mplink.exe"/>
+    </opt:optionCategory>
+
+    <opt:disablePattern opt:idref="singlemode" opt:expr="+reloc.inc"/>
+    <!--opt:submatchPattern opt:idref="singlemode" opt:expr="-r2 -X/o -X/q"/-->
+    <!--opt:stringPropertyPattern opt:idref="mpasmxlocation" opt:expr="(.+)mpasmx.exe"/-->
+    <opt:stringPropertyPattern opt:idref="mplinklocation" opt:expr="(.+)mplink.exe"/>
+</opt:optionLanguage>

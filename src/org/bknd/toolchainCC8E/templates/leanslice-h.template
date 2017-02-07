@@ -1,0 +1,26 @@
+/*
+   File:   %<%NAME%>%.%<%EXTENSION%>%
+   Author: toolchainCC8E Plugin for MPLABX
+
+   Created on %<%DATE%>%, %<%TIME%>%
+ */
+
+// This header file contains builtin types and functions of the CC8E compiler
+// These definitions are for the MPLABX editor only (not compiled)
+
+#if !defined(__CC5X__) & !defined __CC8E__
+
+typedef void Task;
+void waitState( char);
+void changeState( char);
+void startTask( Task (*task)());
+void restartTask( void);
+void clearTask( Task (*task)());
+void taskSlicer( Task (*task)());
+char getState( Task (*task)());
+char getStateAddress( Task (*task)());
+void suspendTask( Task (*task)());
+void resumeTask( Task (*task)());
+void waitUntilResume( char);
+
+#endif
