@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.bknd.toolchainCC8E;
+package com.github.mc6pac.toolchainCC8E;
 
 import com.microchip.crownking.mplabinfo.DeviceSupport;
 import com.microchip.crownking.mplabinfo.DeviceSupportException;
@@ -34,11 +34,9 @@ public class CC8EChipDependentProperties {
             DeviceSupport.Device dev = deviceSupport.getDeviceFromDeviceName(getDeviceName(makeConf));
             FamilyDefinitions.Family family = dev.getFamily();
             switch (family) {
-                case Baseline:
-                    ret = family.hasSubFamily(FamilyDefinitions.SubFamily.BaselineEnh) ? "1210" : "1200";
-                    break;
-                case Midrange:
-                    ret = family.hasSubFamily(FamilyDefinitions.SubFamily.MidrangeEnh) ? "1410" : "1400";
+                case PIC18:
+                    ret = "1800";
+//                    ret = family.hasSubFamily(FamilyDefinitions.SubFamily.PIC18) ? "1210" : "1200";
                     break;
             }
         } catch (DeviceSupportException ex) {

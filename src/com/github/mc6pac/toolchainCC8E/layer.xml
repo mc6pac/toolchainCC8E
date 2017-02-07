@@ -3,7 +3,7 @@
 <filesystem>
     <folder name="Embedded">
         <folder name="LanguageToolchain">
-            <file name="cc5x.languageToolchain.xml" url="cc5x.languageToolchain.xml">
+            <file name="cc8e.languageToolchain.xml" url="cc8e.languageToolchain.xml">
                 <attr name="position" intvalue="7100"/>
             </file>
         </folder>
@@ -12,34 +12,34 @@
         <folder name="Microchip Embedded">
             <folder name="CC8E Compiler">
                 <file name="main.c" url="templates/main-c.template">
-                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="com.github.mc6pac.toolchainCC8E.Bundle"/>
                     <attr name="position" intvalue="300"/>
                     <attr name="template" boolvalue="true"/>
-                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/main-c.html"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/com.github.mc6pac.toolchainCC8E/resources/main-c.html"/>
                     <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
                     <attr name="templateCategory" stringvalue="c-types"/>
                 </file>
                 <file name="example.h" url="templates/example-h.template">
-                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="com.github.mc6pac.toolchainCC8E.Bundle"/>
                     <attr name="position" intvalue="300"/>
                     <attr name="template" boolvalue="true"/>
-                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/example-h.html"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/com.github.mc6pac.toolchainCC8E/resources/example-h.html"/>
                     <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
                     <attr name="templateCategory" stringvalue="c-types"/>
                 </file>
                 <file name="cc8e.h" url="templates/cc8e-h.template">
-                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="com.github.mc6pac.toolchainCC8E.Bundle"/>
                     <attr name="position" intvalue="300"/>
                     <attr name="template" boolvalue="true"/>
-                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/cc8e-h.html"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/com.github.mc6pac.toolchainCC8E/resources/cc8e-h.html"/>
                     <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
                     <attr name="templateCategory" stringvalue="c-types"/>
                 </file>
                 <file name="leanslice.h" url="templates/leanslice-h.template">
-                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.bknd.toolchainCC8E.Bundle"/>
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="com.github.mc6pac.toolchainCC8E.Bundle"/>
                     <attr name="position" intvalue="300"/>
                     <attr name="template" boolvalue="true"/>
-                    <attr name="templateWizardURL" urlvalue="nbresloc:/org.bknd.toolchainCC8E/resources/leanslice-h.html"/>
+                    <attr name="templateWizardURL" urlvalue="nbresloc:/com.github.mc6pac.toolchainCC8E/resources/leanslice-h.html"/>
                     <attr name="templateWizardIterator" newvalue="com.microchip.mplab.nbide.embedded.editor.filecreation.CCFSrcFileIterator"/>
                     <attr name="templateCategory" stringvalue="c-types"/>
                 </file>

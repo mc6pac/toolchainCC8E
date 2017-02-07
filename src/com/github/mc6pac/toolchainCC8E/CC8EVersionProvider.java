@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.bknd.toolchainCC8E;
+package com.github.mc6pac.toolchainCC8E;
 
 import com.microchip.mplab.nbide.embedded.api.LanguageToolSupport;
 import com.microchip.mplab.nbide.embedded.spi.VersionProvider;
@@ -18,7 +18,7 @@ public class CC8EVersionProvider implements VersionProvider {
         if (directory == null || directory.isEmpty())
             return "";
         
-        String pathToCompiler = directory + File.separator + "cc5x.exe";
+        String pathToCompiler = directory + File.separator + "cc8e.exe";
 
         try
         {

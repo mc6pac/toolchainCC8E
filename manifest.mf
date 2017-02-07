@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
-OpenIDE-Module: org.bknd.toolchainCC8E/1
-OpenIDE-Module-Layer: org/bknd/toolchainCC8E/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/bknd/toolchainCC8E/Bundle.properties
+OpenIDE-Module: com.github.mc6pac.toolchainCC8E/1
+OpenIDE-Module-Layer: com/github/mc6pac/toolchainCC8E/layer.xml
+OpenIDE-Module-Localizing-Bundle: com/github/mc6pac/toolchainCC8E/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0.0
 
