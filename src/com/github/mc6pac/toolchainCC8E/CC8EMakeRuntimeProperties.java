@@ -28,7 +28,7 @@ public class CC8EMakeRuntimeProperties {
         if (confObject != null) {
             List<Pair<String, String>> emissionPairs = confObject.getEmissionPairs(null, null);
             if (emissionPairs != null) {
-                for (Pair p : emissionPairs) {
+                for (Pair<String, String> p : emissionPairs) {
                     if (p.first.equals("singlemode")) {
                         res = p.second.equals("true");
                         break;
@@ -49,7 +49,7 @@ public class CC8EMakeRuntimeProperties {
         if (confObject != null) {
             List<Pair<String, String>> emissionPairs = confObject.getEmissionPairs(null, null);
             if (emissionPairs != null) {
-                for (Pair p : emissionPairs) {
+                for (Pair<String, String> p : emissionPairs) {
                     if (p.first.equals("mplinklocation")) {
                         res = p.second.toString();
                         break;
