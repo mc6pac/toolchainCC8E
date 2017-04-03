@@ -12,5 +12,4 @@ public class CC8EUserDefineModifier extends UserDefineModifier {
     public CC8EUserDefineModifier() {
         super(CC8EUserDefineProvider.OPT_ID, CC8EUserDefineProvider.OPT_PROP);
     }
-
 }

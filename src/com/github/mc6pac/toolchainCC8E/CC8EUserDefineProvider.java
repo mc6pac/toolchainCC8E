@@ -7,10 +7,6 @@ package com.github.mc6pac.toolchainCC8E;
 
 import com.microchip.mplab.nbide.embedded.makeproject.spi.configurations.UserDefineProvider;
 
-/**
- *
- * @author Patrick
- */
 public class CC8EUserDefineProvider extends UserDefineProvider {
     
     public static final String OPT_ID = "CC8E";
@@ -18,6 +14,5 @@ public class CC8EUserDefineProvider extends UserDefineProvider {
 
     public CC8EUserDefineProvider() {
         super(OPT_ID, OPT_PROP);
-    }
-    
+    }    
 }

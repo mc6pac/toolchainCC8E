@@ -25,6 +25,5 @@ public class CC8ESystemIncludeProvider implements IncludeProvider {
         ret.add(pathToBin);
         
         return ret;
-    }
-    
+    }    
 }

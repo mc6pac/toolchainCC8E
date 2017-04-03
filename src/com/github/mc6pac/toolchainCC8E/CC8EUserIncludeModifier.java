@@ -9,9 +9,7 @@ import com.microchip.mplab.nbide.embedded.makeproject.spi.configurations.UserInc
 
 public class CC8EUserIncludeModifier extends UserIncludeModifier
 {
-    
     public CC8EUserIncludeModifier() {
         super(CC8EUserIncludeProvider.OPT_ID, CC8EUserIncludeProvider.OPT_PROP);
-    }
-    
+    }   
 }

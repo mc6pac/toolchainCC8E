@@ -6,8 +6,6 @@
 package com.github.mc6pac.toolchainCC8E;
 
 import com.microchip.crownking.opt.Version;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CC8EVersion extends Version {
 

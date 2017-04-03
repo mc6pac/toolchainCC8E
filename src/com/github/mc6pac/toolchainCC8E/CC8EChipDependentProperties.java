@@ -36,7 +36,7 @@ public class CC8EChipDependentProperties {
             switch (family) {
                 case PIC18:
                     ret = "1800";
-//                    ret = family.hasSubFamily(FamilyDefinitions.SubFamily.PIC18) ? "1210" : "1200";
+//                    ret = family.hasSubFamily(FamilyDefinitions.SubFamily.PIC18) ? "1810" : "1800";
                     break;
             }
         } catch (DeviceSupportException ex) {
@@ -44,5 +44,4 @@ public class CC8EChipDependentProperties {
         }
         return ret;
     }
-
 }

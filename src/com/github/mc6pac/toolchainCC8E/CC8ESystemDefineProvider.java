@@ -7,7 +7,6 @@ package com.github.mc6pac.toolchainCC8E;
 
 import com.microchip.mplab.nbide.embedded.makeproject.api.configurations.MakeConfiguration;
 import com.microchip.mplab.nbide.embedded.spi.DefineProvider;
-import com.microchip.mplab.nbide.toolchainCommon.LTUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +31,7 @@ public class CC8ESystemDefineProvider implements DefineProvider {
         
         // These defines can be found by running the compiler in verbose mode.
         res.add("_" + CC8EChipDependentProperties.getProcessorShortNameForCompiler(makeConf));        // _18F4550
-        res.add("__CoreSet__ " + CC8EChipDependentProperties.getProcessorCoreType(makeConf));         // __CoreSet__ 1200  
+        res.add("__CoreSet__ " + CC8EChipDependentProperties.getProcessorCoreType(makeConf));         // __CoreSet__ 1800  
         return res;
     }
 }

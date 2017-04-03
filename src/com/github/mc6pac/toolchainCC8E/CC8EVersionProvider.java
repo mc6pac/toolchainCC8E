@@ -33,6 +33,5 @@ public class CC8EVersionProvider implements VersionProvider {
         }
 
         return "";
-    }
-    
+    }    
 }

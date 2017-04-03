@@ -14,6 +14,5 @@ public class CC8EUserIncludeProvider extends UserIncludeProvider {
 
     public CC8EUserIncludeProvider() {
         super(OPT_ID, OPT_PROP);
-    }
-    
+    }    
 }

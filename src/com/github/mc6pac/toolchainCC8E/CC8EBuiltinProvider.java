@@ -16,7 +16,7 @@ public class CC8EBuiltinProvider implements BuiltinProvider {
     private static final Set<String> BUILTINS;
 
     static { 
-        BUILTINS = new HashSet<String>();
+        BUILTINS = new HashSet<>();
         BUILTINS.add("btsc");
         BUILTINS.add("btss");
         BUILTINS.add("clearRAM");
@@ -43,5 +43,4 @@ public class CC8EBuiltinProvider implements BuiltinProvider {
     public Set<String> getBuiltins(Project project, ProjectConfiguration pc, String string) {
         return BUILTINS;
     }
-    
 }

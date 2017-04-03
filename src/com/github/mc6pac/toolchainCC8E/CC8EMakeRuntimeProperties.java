@@ -19,7 +19,7 @@ public class CC8EMakeRuntimeProperties {
         commandLineProperties.put("MP_LINK", getMPLinkerLocation(projectDescriptor, conf));
     }
 
-    public boolean getCompilerMode(MakeConfigurationBook projectDescriptor, MakeConfiguration conf) {
+    private boolean getCompilerMode(MakeConfigurationBook projectDescriptor, MakeConfiguration conf) {
         boolean res = true;
         if (!Utilities.isWindows())
             return res;
@@ -39,8 +39,7 @@ public class CC8EMakeRuntimeProperties {
         return res;
     }
     
-    
-    public String getMPLinkerLocation(MakeConfigurationBook projectDescriptor, MakeConfiguration conf) {
+    private String getMPLinkerLocation(MakeConfigurationBook projectDescriptor, MakeConfiguration conf) {
         String res = "";
         if (!Utilities.isWindows())
             return res;
@@ -51,7 +50,7 @@ public class CC8EMakeRuntimeProperties {
             if (emissionPairs != null) {
                 for (Pair<String, String> p : emissionPairs) {
                     if (p.first.equals("mplinklocation")) {
-                        res = p.second.toString();
+                        res = p.second;
                         break;
                     }
                 }
@@ -59,5 +58,4 @@ public class CC8EMakeRuntimeProperties {
         }
         return res;
     }
-
 }

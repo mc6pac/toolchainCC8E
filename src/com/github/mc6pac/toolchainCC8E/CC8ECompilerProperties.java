@@ -5,12 +5,8 @@
  */
 package com.github.mc6pac.toolchainCC8E;
 
-import com.microchip.crownking.Pair;
 import com.microchip.mplab.nbide.embedded.makeproject.api.configurations.MakeConfiguration;
 import com.microchip.mplab.nbide.embedded.makeproject.api.configurations.MakeConfigurationBook;
-import com.microchip.mplab.nbide.embedded.makeproject.api.configurations.OptionConfiguration;
-import com.microchip.mplab.nbide.toolchainCommon.LTUtils;
-import java.util.List;
 import java.util.Properties;
 
 public class CC8ECompilerProperties {
