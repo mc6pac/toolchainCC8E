@@ -113,8 +113,11 @@ and open the template in the editor.
             <opt:booleanOption opt:id="modifysymbols" opt:name="Modify symbols." opt:trueemission="m"/>
             <opt:booleanOption opt:id="modifystrings" opt:name="Modify strings." opt:trueemission="s"/>
         </opt:complexOption>
-       
-        <opt:booleanOption opt:id="produceerrorfile" opt:name="Produce Error file." opt:trueemission="-F"/>
+
+        <opt:booleanOption opt:id="producelistfile" opt:name="Produce list file." opt:trueemission="-L"/>
+        <opt:booleanOption opt:id="producevariablefile" opt:name="Produce variables file." opt:trueemission="-V"/>
+        <opt:booleanOption opt:id="producecalltreefile" opt:name="Produce call-tree file." opt:trueemission="-Q"/>
+        <opt:booleanOption opt:id="produceerrorfile" opt:name="Produce error file." opt:trueemission="-F"/>
     </opt:optionCategory>
 
     <opt:optionCategory opt:id="compilerwarnings" opt:name="Compiler warnings">
@@ -190,6 +193,9 @@ and open the template in the editor.
         <opt:enablePattern opt:idref="modifysymbols" opt:expr=".*m"/>
         <opt:enablePattern opt:idref="modifystrings" opt:expr=".*s.*"/>
     </opt:submatchPattern>
+    <opt:enablePattern opt:idref="producelistfile" opt:expr="-L"/>
+    <opt:enablePattern opt:idref="producevariablefile" opt:expr="-V"/>
+    <opt:enablePattern opt:idref="producecalltreefile" opt:expr="-Q"/>
     <opt:enablePattern opt:idref="produceerrorfile" opt:expr="-F"/>
 
     <opt:enablePattern opt:id="warning_b" opt:expr="-wB"/>
