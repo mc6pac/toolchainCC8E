@@ -93,27 +93,6 @@ and open the template in the editor.
     </opt:optionCategory>
 
     <opt:optionCategory opt:id="compileroutput" opt:name="Compiler generated files">
-        <opt:complexOption opt:id="outputtosrccproptions">
-            <opt:booleanOption opt:id="outputtosrccpr" opt:name="Write output from preprocessor to file." opt:trueemission="-B">
-                <opt:trueModifiers>
-                    <opt:optionSuppressor opt:idref="partialpreprocessing" opt:bool="false"/>
-                    <opt:optionSuppressor opt:idref="noincludefiles" opt:bool="false"/>
-                    <opt:optionSuppressor opt:idref="modifysymbols" opt:bool="false"/>
-                    <opt:optionSuppressor opt:idref="modifystrings" opt:bool="false"/>
-                </opt:trueModifiers>
-                <opt:falseModifiers>
-                    <opt:optionSuppressor opt:idref="partialpreprocessing" opt:bool="true"/>
-                    <opt:optionSuppressor opt:idref="noincludefiles" opt:bool="true"/>
-                    <opt:optionSuppressor opt:idref="modifysymbols" opt:bool="true"/>
-                    <opt:optionSuppressor opt:idref="modifystrings" opt:bool="true"/>
-                </opt:falseModifiers>
-            </opt:booleanOption>
-            <opt:booleanOption opt:id="partialpreprocessing" opt:name="Partial preprocessing." opt:trueemission="p"/>
-            <opt:booleanOption opt:id="noincludefiles" opt:name="No include files." opt:trueemission="i"/>
-            <opt:booleanOption opt:id="modifysymbols" opt:name="Modify symbols." opt:trueemission="m"/>
-            <opt:booleanOption opt:id="modifystrings" opt:name="Modify strings." opt:trueemission="s"/>
-        </opt:complexOption>
-
         <opt:booleanOption opt:id="producelistfile" opt:name="Produce list file." opt:trueemission="-L"/>
         <opt:booleanOption opt:id="producevariablefile" opt:name="Produce variables file." opt:trueemission="-V"/>
         <opt:booleanOption opt:id="producecalltreefile" opt:name="Produce call-tree file." opt:trueemission="-Q"/>
@@ -187,12 +166,6 @@ and open the template in the editor.
         <!--opt:submatchPattern opt:idref="labelmnemonicargumentspacing" opt:expr=""/-->
     </opt:submatchPattern>
     
-    <opt:submatchPattern opt:idref="outputtosrccpr" opt:expr="-B([pims]+)">
-        <opt:enablePattern opt:idref="partialpreprocessing" opt:expr=".*p.*"/>
-        <opt:enablePattern opt:idref="noincludefiles" opt:expr=".*i.*"/>
-        <opt:enablePattern opt:idref="modifysymbols" opt:expr=".*m"/>
-        <opt:enablePattern opt:idref="modifystrings" opt:expr=".*s.*"/>
-    </opt:submatchPattern>
     <opt:enablePattern opt:idref="producelistfile" opt:expr="-L"/>
     <opt:enablePattern opt:idref="producevariablefile" opt:expr="-V"/>
     <opt:enablePattern opt:idref="producecalltreefile" opt:expr="-Q"/>
