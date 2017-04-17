@@ -93,6 +93,7 @@ and open the template in the editor.
     </opt:optionCategory>
 
     <opt:optionCategory opt:id="compileroutput" opt:name="Compiler generated files">
+        <opt:booleanOption opt:id="outputtosrccpr" opt:name="Write output from preprocessor to file." opt:trueemission="-B"/>
         <opt:booleanOption opt:id="producelistfile" opt:name="Produce list file." opt:trueemission="-L"/>
         <opt:booleanOption opt:id="producevariablefile" opt:name="Produce variables file." opt:trueemission="-V"/>
         <opt:booleanOption opt:id="producecalltreefile" opt:name="Produce call-tree file." opt:trueemission="-Q"/>
@@ -166,6 +167,7 @@ and open the template in the editor.
         <!--opt:submatchPattern opt:idref="labelmnemonicargumentspacing" opt:expr=""/-->
     </opt:submatchPattern>
     
+    <opt:enablePattern opt:idref="outputtosrccpr" opt:expr="-B"/>
     <opt:enablePattern opt:idref="producelistfile" opt:expr="-L"/>
     <opt:enablePattern opt:idref="producevariablefile" opt:expr="-V"/>
     <opt:enablePattern opt:idref="producecalltreefile" opt:expr="-Q"/>
