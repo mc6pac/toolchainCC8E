@@ -141,6 +141,7 @@ and open the template in the editor.
             <mp:device mp:name="PIC18F24K20"/>
             <mp:device mp:name="PIC18F24K22"/>
             <mp:device mp:name="PIC18F24K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F24K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F24K50"/>
             <mp:device mp:name="PIC18F2510"/>
             <mp:device mp:name="PIC18F2515"/>
@@ -160,8 +161,10 @@ and open the template in the editor.
             <mp:device mp:name="PIC18F25K20"/>
             <mp:device mp:name="PIC18F25K22"/>
             <mp:device mp:name="PIC18F25K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F25K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F25K50"/>
             <mp:device mp:name="PIC18F25K80"/>
+            <mp:device mp:name="PIC18F25K83" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F2610"/>
             <mp:device mp:name="PIC18F2620"/>
             <mp:device mp:name="PIC18F2680"/>
@@ -174,10 +177,13 @@ and open the template in the editor.
             <mp:device mp:name="PIC18F26K20"/>
             <mp:device mp:name="PIC18F26K22"/>
             <mp:device mp:name="PIC18F26K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F26K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F26K80"/>
+            <mp:device mp:name="PIC18F26K83" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F27J13"/>
             <mp:device mp:name="PIC18F27J53"/>
             <mp:device mp:name="PIC18F27K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F27K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F4220"/>
             <mp:device mp:name="PIC18F4221"/>
             <mp:device mp:name="PIC18F4320"/>
@@ -219,6 +225,7 @@ and open the template in the editor.
             <mp:device mp:name="PIC18F45K20"/>
             <mp:device mp:name="PIC18F45K22"/>
             <mp:device mp:name="PIC18F45K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F45K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F45K50"/>
             <mp:device mp:name="PIC18F45K80"/>
             <mp:device mp:name="PIC18F4610"/>
@@ -233,10 +240,15 @@ and open the template in the editor.
             <mp:device mp:name="PIC18F46K20"/>
             <mp:device mp:name="PIC18F46K22"/>
             <mp:device mp:name="PIC18F46K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F46K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F46K80"/>
             <mp:device mp:name="PIC18F47J13"/>
             <mp:device mp:name="PIC18F47J53"/>
             <mp:device mp:name="PIC18F47K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18F47K42" opt:fromversion="1.6"/>
+            <mp:device mp:name="PIC18F55K42" opt:fromversion="1.6"/>
+            <mp:device mp:name="PIC18F56K42" opt:fromversion="1.6"/>
+            <mp:device mp:name="PIC18F57K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18F6310"/>
             <mp:device mp:name="PIC18F6390"/>
             <mp:device mp:name="PIC18F6393"/>
@@ -389,6 +401,7 @@ and open the template in the editor.
             <mp:device mp:name="PIC18LF24J50"/>
             <mp:device mp:name="PIC18LF24K22"/>
             <mp:device mp:name="PIC18LF24K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF24K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF24K50"/>
             <mp:device mp:name="PIC18LF2510"/>
             <mp:device mp:name="PIC18LF2515"/>
@@ -407,8 +420,10 @@ and open the template in the editor.
             <mp:device mp:name="PIC18LF25J50"/>
             <mp:device mp:name="PIC18LF25K22"/>
             <mp:device mp:name="PIC18LF25K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF25K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF25K50"/>
             <mp:device mp:name="PIC18LF25K80"/>
+            <mp:device mp:name="PIC18LF25K83" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF2610"/>
             <mp:device mp:name="PIC18LF2620"/>
             <mp:device mp:name="PIC18LF2680"/>
@@ -420,10 +435,13 @@ and open the template in the editor.
             <mp:device mp:name="PIC18LF26J53"/>
             <mp:device mp:name="PIC18LF26K22"/>
             <mp:device mp:name="PIC18LF26K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF26K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF26K80"/>
+            <mp:device mp:name="PIC18LF26K83" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF27J13"/>
             <mp:device mp:name="PIC18LF27J53"/>
             <mp:device mp:name="PIC18LF27K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF27K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF4220"/>
             <mp:device mp:name="PIC18LF4221"/>
             <mp:device mp:name="PIC18LF4320"/>
@@ -462,6 +480,7 @@ and open the template in the editor.
             <mp:device mp:name="PIC18LF45J50"/>
             <mp:device mp:name="PIC18LF45K22"/>
             <mp:device mp:name="PIC18LF45K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF45K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF45K50"/>
             <mp:device mp:name="PIC18LF45K80"/>
             <mp:device mp:name="PIC18LF4610"/>
@@ -475,10 +494,15 @@ and open the template in the editor.
             <mp:device mp:name="PIC18LF46J53"/>
             <mp:device mp:name="PIC18LF46K22"/>
             <mp:device mp:name="PIC18LF46K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF46K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF46K80"/>
             <mp:device mp:name="PIC18LF47J13"/>
             <mp:device mp:name="PIC18LF47J53"/>
             <mp:device mp:name="PIC18LF47K40" opt:fromversion="1.5"/>
+            <mp:device mp:name="PIC18LF47K42" opt:fromversion="1.6"/>
+            <mp:device mp:name="PIC18LF55K42" opt:fromversion="1.6"/>
+            <mp:device mp:name="PIC18LF56K42" opt:fromversion="1.6"/>
+            <mp:device mp:name="PIC18LF57K42" opt:fromversion="1.6"/>
             <mp:device mp:name="PIC18LF6310"/>
             <mp:device mp:name="PIC18LF6390"/>
             <mp:device mp:name="PIC18LF6393"/>

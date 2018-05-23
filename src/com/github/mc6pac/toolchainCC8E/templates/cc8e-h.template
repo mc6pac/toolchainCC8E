@@ -206,6 +206,10 @@
         #include <18F24K40.H>
     #elif defined(_18LF24K40)
         #include <18F24K40.H>
+    #elif defined(_18F24K42)
+        #include <18F24K42.H>
+    #elif defined(_18LF24K42)
+        #include <18F24K42.H>
     #elif defined(_18F24K50)
         #include <18F24K50.H>
     #elif defined(_18F2510)
@@ -246,10 +250,18 @@
         #include <18F25K40.H>
     #elif defined(_18LF25K40)
         #include <18F25K40.H>
+    #elif defined(_18F25K42)
+        #include <18F25K42.H>
+    #elif defined(_18LF25K42)
+        #include <18F25K42.H>
     #elif defined(_18F25K50)
         #include <18F25K50.H>
     #elif defined(_18F25K80)
         #include <18F25K80.H>
+    #elif defined(_18F25K83)
+        #include <18F25K83.H>
+    #elif defined(_18LF25K83)
+        #include <18F25K83.H>
     #elif defined(_18F2610)
         #include <18F2610.H>
     #elif defined(_18F2620)
@@ -276,8 +288,16 @@
         #include <18F26K40.H>
     #elif defined(_18LF26K40)
         #include <18F26K40.H>
+    #elif defined(_18F26K42)
+        #include <18F26K42.H>
+    #elif defined(_18LF26K42)
+        #include <18F26K42.H>
     #elif defined(_18F26K80)
         #include <18F26K80.H>
+    #elif defined(_18F26K83)
+        #include <18F26K83.H>
+    #elif defined(_18LF26K83)
+        #include <18F26K83.H>
     #elif defined(_18F27J13)
         #include <18F27J13.H>
     #elif defined(_18F27J53)
@@ -286,6 +306,10 @@
         #include <18F27K40.H>
     #elif defined(_18LF27K40)
         #include <18F27K40.H>
+    #elif defined(_18F27K42)
+        #include <18F27K42.H>
+    #elif defined(_18LF27K42)
+        #include <18F27K42.H>
     #elif defined(_18F4220)
         #include <18F4220.H>
     #elif defined(_18F4221)
@@ -370,6 +394,10 @@
         #include <18F45K40.H>
     #elif defined(_18LF45K40)
         #include <18F45K40.H>
+    #elif defined(_18F45K42)
+        #include <18F45K42.H>
+    #elif defined(_18LF45K42)
+        #include <18F45K42.H>
     #elif defined(_18F45K50)
         #include <18F45K50.H>
     #elif defined(_18F45K80)
@@ -400,6 +428,10 @@
         #include <18F46K40.H>
     #elif defined(_18LF46K40)
         #include <18F46K40.H>
+    #elif defined(_18F46K42)
+        #include <18F46K42.H>
+    #elif defined(_18LF46K42)
+        #include <18F46K42.H>
     #elif defined(_18F46K80)
         #include <18F46K80.H>
     #elif defined(_18F47J13)
@@ -410,6 +442,22 @@
         #include <18F47K40.H>
     #elif defined(_18LF47K40)
         #include <18F47K40.H>
+    #elif defined(_18F47K42)
+        #include <18F47K42.H>
+    #elif defined(_18LF47K42)
+        #include <18F47K42.H>
+    #elif defined(_18F55K42)
+        #include <18F55K42.H>
+    #elif defined(_18LF55K42)
+        #include <18F55K42.H>
+    #elif defined(_18F56K42)
+        #include <18F56K42.H>
+    #elif defined(_18LF56K42)
+        #include <18F56K42.H>
+    #elif defined(_18F57K42)
+        #include <18F57K42.H>
+    #elif defined(_18LF57K42)
+        #include <18F57K42.H>
     #elif defined(_18F6310)
         #include <18F6310.H>
     #elif defined(_18F6390)
