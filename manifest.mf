@@ -3,5 +3,5 @@ AutoUpdate-Show-In-Client: true
 OpenIDE-Module: com.github.mc6pac.toolchainCC8E/1
 OpenIDE-Module-Layer: com/github/mc6pac/toolchainCC8E/layer.xml
 OpenIDE-Module-Localizing-Bundle: com/github/mc6pac/toolchainCC8E/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0.0
+OpenIDE-Module-Specification-Version: 1.1.0
 
