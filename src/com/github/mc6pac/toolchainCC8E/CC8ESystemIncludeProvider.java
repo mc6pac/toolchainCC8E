@@ -5,9 +5,8 @@
  */
 package com.github.mc6pac.toolchainCC8E;
 
-import com.microchip.mplab.nbide.embedded.makeproject.api.configurations.MakeConfiguration;
 import com.microchip.mplab.nbide.embedded.spi.IncludeProvider;
-import com.microchip.mplab.nbide.toolchainCommon.LTUtils;
+import com.microchip.mplab.nbide.toolchainCommon.properties.CommonLanguageToolchainPropertiesUtils;
 import java.util.ArrayList;
 import java.util.List;
 import org.netbeans.api.project.Project;
@@ -15,12 +14,12 @@ import org.netbeans.spi.project.ProjectConfiguration;
 
 public class CC8ESystemIncludeProvider implements IncludeProvider {
 
+    private final CommonLanguageToolchainPropertiesUtils utils = new CommonLanguageToolchainPropertiesUtils();
+
     @Override
     public List<String> getIncludes(Project project, ProjectConfiguration projectConf, String itemPath) {
-        MakeConfiguration makeConf = (MakeConfiguration)projectConf;
-
         final List<String> ret = new ArrayList<>();
-        final String pathToBin = LTUtils.pathToBin(projectConf);
+        final String pathToBin = utils.pathToBin(projectConf);
 
         ret.add(pathToBin);
         
